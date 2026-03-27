@@ -1,10 +1,722 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-  <title>Maison Voyance</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maison Voyance — Guidance spirituelle</title>
+  <meta name="description" content="Consultations de voyance, tirages, guidance sentimentale et spirituelle. Prenez rendez-vous avec Maison Voyance." />
+  <style>
+    :root {
+      --bg: #0f0a1f;
+      --bg-soft: #17102d;
+      --card: rgba(255,255,255,0.06);
+      --card-border: rgba(255,255,255,0.12);
+      --text: #f8f4ff;
+      --muted: #c9bddf;
+      --accent: #c89cff;
+      --accent-strong: #9d5cff;
+      --gold: #f0d59b;
+      --shadow: 0 20px 60px rgba(0,0,0,0.35);
+      --radius: 22px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(157,92,255,0.20), transparent 28%),
+        radial-gradient(circle at 80% 15%, rgba(240,213,155,0.10), transparent 18%),
+        linear-gradient(180deg, #120b22 0%, #0c0818 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .announcement {
+      text-align: center;
+      padding: 10px 16px;
+      font-size: 0.95rem;
+      color: #f7eccc;
+      background: rgba(240,213,155,0.08);
+      border-bottom: 1px solid rgba(240,213,155,0.15);
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(16px);
+      background: rgba(10, 7, 19, 0.72);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 78px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(200,156,255,0.3), rgba(240,213,155,0.3));
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: var(--shadow);
+      font-size: 1.15rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn, .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-weight: 600;
+      transition: 0.25s ease;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    .btn {
+      color: #120b22;
+      background: linear-gradient(135deg, var(--gold), #fff0c9);
+      box-shadow: 0 14px 28px rgba(240, 213, 155, 0.22);
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn-outline {
+      color: var(--text);
+      background: rgba(255,255,255,0.04);
+      border-color: rgba(255,255,255,0.12);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      border: 0;
+      color: var(--text);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .mobile-menu {
+      display: none;
+      padding: 0 0 18px;
+    }
+
+    .mobile-menu a {
+      display: block;
+      padding: 14px 0;
+      color: var(--muted);
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .hero {
+      padding: 84px 0 56px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.10);
+      color: var(--gold);
+      font-size: 0.92rem;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0 0 18px;
+      font-size: clamp(2.3rem, 5vw, 4.8rem);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.08rem;
+      max-width: 60ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .hero-points {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .point {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 16px;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .hero-card {
+      position: relative;
+      border-radius: 30px;
+      padding: 28px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      border: 1px solid rgba(255,255,255,0.11);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      min-height: 520px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 18%, rgba(200,156,255,0.55), transparent 20%),
+        radial-gradient(circle at 55% 35%, rgba(240,213,155,0.25), transparent 16%),
+        radial-gradient(circle at 25% 18%, rgba(255,255,255,0.12), transparent 8%);
+      pointer-events: none;
+    }
+
+    .crystal {
+      position: absolute;
+      top: 58px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 35% 30%, rgba(255,255,255,0.92), rgba(255,255,255,0.26) 22%, rgba(200,156,255,0.26) 45%, rgba(255,255,255,0.08) 65%, transparent 72%);
+      box-shadow: inset 0 0 50px rgba(255,255,255,0.18), 0 0 100px rgba(157,92,255,0.32);
+      border: 1px solid rgba(255,255,255,0.22);
+      backdrop-filter: blur(12px);
+    }
+
+    .hero-card-content {
+      position: relative;
+      z-index: 1;
+      background: rgba(7,6,16,0.45);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 22px;
+      padding: 18px;
+    }
+
+    .hero-card-content h3 {
+      margin: 0 0 8px;
+      font-size: 1.2rem;
+    }
+
+    .section {
+      padding: 54px 0;
+    }
+
+    .section-title {
+      max-width: 720px;
+      margin-bottom: 28px;
+    }
+
+    .section-title h2 {
+      margin: 0 0 12px;
+      font-size: clamp(1.8rem, 3vw, 3rem);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+    }
+
+    .section-title p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      padding: 24px;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      margin: 14px 0 10px;
+      font-size: 1.18rem;
+    }
+
+    .card p, .card li {
+      color: var(--muted);
+    }
+
+    .icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      font-size: 1.2rem;
+      background: linear-gradient(135deg, rgba(200,156,255,0.24), rgba(240,213,155,0.18));
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .step-number {
+      display: inline-flex;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+      background: rgba(240,213,155,0.13);
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .pricing {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .price {
+      font-size: 2.1rem;
+      font-weight: 800;
+      line-height: 1;
+      margin: 14px 0 8px;
+    }
+
+    .price small {
+      font-size: 1rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    ul.clean {
+      list-style: none;
+      padding: 0;
+      margin: 18px 0 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    ul.clean li::before {
+      content: "✦";
+      color: var(--gold);
+      margin-right: 10px;
+    }
+
+    .testimonial-wrap {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 18px;
+    }
+
+    .quote {
+      font-size: clamp(1.25rem, 2vw, 1.8rem);
+      line-height: 1.35;
+      margin: 0 0 18px;
+    }
+
+    .cta {
+      padding: 34px;
+      border-radius: 30px;
+      background: linear-gradient(135deg, rgba(200,156,255,0.18), rgba(240,213,155,0.12));
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: var(--shadow);
+    }
+
+    .cta-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 12px;
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 32px 0 56px;
+      color: var(--muted);
+    }
+
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    @media (max-width: 1024px) {
+      .hero-grid,
+      .testimonial-wrap,
+      .cta-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cards,
+      .pricing {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .steps {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero-card {
+        min-height: 420px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav-links,
+      .nav-actions .btn-outline {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .mobile-menu.open {
+        display: block;
+      }
+
+      .hero {
+        padding-top: 52px;
+      }
+
+      .hero-points,
+      .cards,
+      .pricing,
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card {
+        min-height: 360px;
+        padding: 20px;
+      }
+
+      .crystal {
+        width: 170px;
+        height: 170px;
+        top: 48px;
+      }
+
+      .cta {
+        padding: 24px;
+      }
+
+      .btn, .btn-outline {
+        width: 100%;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>Bienvenue sur Maison Voyance 🔮</h1>
-  <p>Mon site est en ligne 🚀</p>
+  <div class="announcement">Consultations sur rendez-vous — En ligne, par téléphone ou en visio</div>
+
+  <header>
+    <div class="container nav">
+      <a href="#accueil" class="brand">
+        <span class="brand-mark">✦</span>
+        <span>Maison Voyance</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#services">Prestations</a>
+        <a href="#process">Comment ça marche</a>
+        <a href="#tarifs">Tarifs</a>
+        <a href="#avis">Avis</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="#contact" class="btn-outline">Nous contacter</a>
+        <a href="#tarifs" class="btn">Prendre rendez-vous</a>
+        <button class="menu-toggle" aria-label="Ouvrir le menu" id="menuToggle">☰</button>
+      </div>
+    </div>
+
+    <div class="container mobile-menu" id="mobileMenu">
+      <a href="#services">Prestations</a>
+      <a href="#process">Comment ça marche</a>
+      <a href="#tarifs">Tarifs</a>
+      <a href="#avis">Avis</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="accueil">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">🔮 Guidance intuitive • Écoute • Clarté</div>
+          <h1>Retrouvez des réponses claires pour avancer avec sérénité.</h1>
+          <p>
+            Maison Voyance vous accompagne dans vos questionnements sentimentaux, professionnels et personnels à travers des consultations intuitives, des tirages ciblés et une approche humaine, douce et confidentielle.
+          </p>
+          <div class="hero-actions">
+            <a class="btn" href="#contact">Réserver une consultation</a>
+            <a class="btn-outline" href="#services">Découvrir les prestations</a>
+          </div>
+          <div class="hero-points">
+            <div class="point">Consultations en ligne, par téléphone ou visio.</div>
+            <div class="point">Approche bienveillante, confidentielle et sans jugement.</div>
+            <div class="point">Réponse rapide pour vos demandes de rendez-vous.</div>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="crystal"></div>
+          <div class="hero-card-content">
+            <h3>Consultation signature</h3>
+            <p>Un moment d’échange pour éclairer votre situation, comprendre vos blocages et retrouver une direction plus sereine.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-title">
+          <h2>Des prestations pensées pour chaque besoin.</h2>
+          <p>Présente ici vos vraies offres, vos durées et votre méthode. Tout ce texte pourra être modifié facilement par la suite.</p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="icon">🌙</div>
+            <h3>Voyance sentimentale</h3>
+            <p>Pour faire le point sur une relation, une rencontre, un retour affectif ou un questionnement amoureux important.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon">✨</div>
+            <h3>Guidance générale</h3>
+            <p>Une consultation globale pour éclairer plusieurs aspects de votre vie : émotionnel, professionnel, énergie du moment.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon">💫</div>
+            <h3>Tirage ciblé</h3>
+            <p>Une réponse rapide et précise sur une question spécifique avec un format plus court et très direct.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="process">
+      <div class="container">
+        <div class="section-title">
+          <h2>Comment se déroule une consultation&nbsp;?</h2>
+          <p>Une expérience simple, fluide et rassurante pour mettre vos visiteurs en confiance dès la première visite.</p>
+        </div>
+
+        <div class="steps">
+          <div class="card">
+            <div class="step-number">1</div>
+            <h3>Choisissez votre format</h3>
+            <p>Par téléphone, visio ou message selon votre préférence et le type d’accompagnement souhaité.</p>
+          </div>
+          <div class="card">
+            <div class="step-number">2</div>
+            <h3>Réservez votre créneau</h3>
+            <p>Vous fixez un rendez-vous facilement via WhatsApp, email ou formulaire de contact.</p>
+          </div>
+          <div class="card">
+            <div class="step-number">3</div>
+            <h3>Recevez votre guidance</h3>
+            <p>La consultation se déroule dans un cadre bienveillant, confidentiel et centré sur vos questions.</p>
+          </div>
+          <div class="card">
+            <div class="step-number">4</div>
+            <h3>Avancez avec plus de clarté</h3>
+            <p>Vous repartez avec une vision plus nette, des réponses concrètes et des pistes pour la suite.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="tarifs">
+      <div class="container">
+        <div class="section-title">
+          <h2>Tarifs clairs et accessibles.</h2>
+          <p>Tu pourras remplacer ces prix plus tard par tes vrais tarifs, tes vraies durées et ajouter tes conditions si besoin.</p>
+        </div>
+
+        <div class="pricing">
+          <article class="card">
+            <h3>Tirage express</h3>
+            <div class="price">29€ <small>/ 20 min</small></div>
+            <p>Pour une question précise avec une réponse rapide et ciblée.</p>
+            <ul class="clean">
+              <li>Question unique</li>
+              <li>Format rapide</li>
+              <li>Idéal pour un besoin ponctuel</li>
+            </ul>
+          </article>
+
+          <article class="card" style="border-color: rgba(240,213,155,0.35); background: linear-gradient(180deg, rgba(240,213,155,0.10), rgba(255,255,255,0.04));">
+            <h3>Consultation complète</h3>
+            <div class="price">59€ <small>/ 45 min</small></div>
+            <p>Le format le plus demandé pour faire un point sérieux sur votre situation.</p>
+            <ul class="clean">
+              <li>Échange approfondi</li>
+              <li>Plusieurs thèmes possibles</li>
+              <li>Vision globale et conseils</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Guidance premium</h3>
+            <div class="price">89€ <small>/ 75 min</small></div>
+            <p>Pour une lecture complète, détaillée et un accompagnement plus poussé.</p>
+            <ul class="clean">
+              <li>Approche approfondie</li>
+              <li>Temps d’échange étendu</li>
+              <li>Idéal en période de transition</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="avis">
+      <div class="container testimonial-wrap">
+        <div class="card">
+          <p class="quote">“Une consultation apaisante, claire et très juste. Je suis repartie avec des réponses concrètes et beaucoup plus de sérénité.”</p>
+          <strong>— Cliente satisfaite</strong>
+        </div>
+        <div class="card">
+          <h3>Pourquoi vos visiteurs vous choisissent</h3>
+          <ul class="clean">
+            <li>Une approche rassurante et élégante</li>
+            <li>Des réponses claires sans mise en scène excessive</li>
+            <li>Une prise de contact facile sur mobile</li>
+            <li>Un univers premium qui inspire confiance</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container cta">
+        <div class="cta-grid">
+          <div>
+            <div class="eyebrow">Réservation</div>
+            <h2 style="margin:0 0 12px; font-size: clamp(2rem, 4vw, 3.2rem); line-height:1.05;">Prête à publier ton site et à recevoir tes premiers rendez-vous.</h2>
+            <p style="margin:0; color: var(--muted);">Remplace simplement les coordonnées ci-dessous par les tiennes. Tu peux aussi ajouter un lien Calendly, WhatsApp, Stripe ou formulaire plus tard.</p>
+          </div>
+          <div class="card" style="background: rgba(8,7,19,0.35);">
+            <div class="contact-list">
+              <div><strong>Email :</strong> contact@maisonvoyance.com</div>
+              <div><strong>Téléphone :</strong> 06 00 00 00 00</div>
+              <div><strong>WhatsApp :</strong> Lien à ajouter</div>
+              <div><strong>Instagram :</strong> @maisonvoyance</div>
+            </div>
+            <div style="display:grid; gap:12px; margin-top:22px;">
+              <a class="btn" href="mailto:contact@maisonvoyance.com">Prendre rendez-vous</a>
+              <a class="btn-outline" href="#accueil">Retour en haut</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>© 2026 Maison Voyance — Tous droits réservés</div>
+      <div>Mentions légales · Politique de confidentialité · CGV</div>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('menuToggle');
+    const menu = document.getElementById('mobileMenu');
+    toggle.addEventListener('click', () => menu.classList.toggle('open'));
+
+    document.querySelectorAll('.mobile-menu a').forEach(link => {
+      link.addEventListener('click', () => menu.classList.remove('open'));
+    });
+  </script>
 </body>
 </html>
